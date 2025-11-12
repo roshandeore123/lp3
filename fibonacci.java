@@ -1,41 +1,42 @@
-
-Fibonacci Series in Java without using recursion
-class FibonacciExample1{  
-public static void main(String args[])  
-{    
- int n1=0,n2=1,n3,i,count=10;    
- System.out.print(n1+" "+n2);//printing 0 and 1    
+class FibonacciExample {
     
- for(i=2;i<count;++i)//loop starts from 2 because 0 and 1 are already printed    
- {    
-  n3=n1+n2;    
-  System.out.print(" "+n3);    
-  n1=n2;    
-  n2=n3;    
- }    
-  
-}}  
-
-
-
-(recursion)
- class FibonacciExample2 {
-    static int n1 = 0, n2 = 1, n3 = 0;
-
-    // Recursive function to print Fibonacci series
-    static void printFibonacci(int count) {
-        if (count > 0) {
+    // 🔹 Non-Recursive (Iterative) Fibonacci
+    static void fibonacciIterative(int count) {
+        int n1 = 0, n2 = 1, n3;
+        System.out.print("Iterative Fibonacci Series: " + n1 + " " + n2);
+        
+        for (int i = 2; i < count; i++) {
             n3 = n1 + n2;
             System.out.print(" " + n3);
             n1 = n2;
             n2 = n3;
-            printFibonacci(count - 1); // recursive call
         }
+        System.out.println();
     }
 
-    public static void main(String args[]) {
+    // 🔹 Recursive Fibonacci Function
+    static int fibonacciRecursive(int n) {
+        if (n <= 1)
+            return n;
+        return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    }
+
+    // 🔹 Function to print recursive series
+    static void printFibonacciRecursive(int count) {
+        System.out.print("Recursive Fibonacci Series: ");
+        for (int i = 0; i < count; i++) {
+            System.out.print(fibonacciRecursive(i) + " ");
+        }
+        System.out.println();
+    }
+
+    // 🔹 Main method
+    public static void main(String[] args) {
         int count = 10;
-        System.out.print(n1 + " " + n2); // printing 0 and 1
-        printFibonacci(count - 2); // already printed 2 numbers, so reduce count by 2
+
+        // ✅ Call ONE of the following lines:
+
+        //fibonacciIterative(count);          // Non-recursive version
+         printFibonacciRecursive(count);  // Recursive version
     }
 }
